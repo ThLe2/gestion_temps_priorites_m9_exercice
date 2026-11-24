@@ -1,0 +1,91 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Entraînement · Le bon outil</title><style>
+:root{--fonce:#5E1349;--prune:#8C1E70;--clair:#F4E6EE;--rose:#C77BAA;--trame:#E8DCE5;--fond:#FAF6F8;--texte:#3C3C3C;--gris:#8A7A85;--ok:#2E7D4F;--ko:#B3261E;--bleu:#2F6DB3;--vert:#3C8D5A;--orange:#C77700}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--texte);background:var(--fond);font-size:15px;line-height:1.45}
+header{background:var(--fonce);color:#fff;padding:16px 22px}header .k{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#EAD3E3;font-weight:700}header h1{margin:4px 0 0;font-size:22px}
+main{max-width:1180px;margin:0 auto;padding:16px}
+.contexte{background:#fff;border-left:5px solid var(--prune);padding:12px 16px;margin-bottom:14px}
+.contexte h2{margin:0 0 6px;font-size:17px;color:var(--fonce)}.contexte ul{margin:6px 0 0;padding-left:20px}
+.etapes{display:flex;gap:8px;margin:0 0 12px;flex-wrap:wrap}.etapes span{padding:6px 12px;border-radius:16px;background:#fff;border:1px solid var(--trame);font-size:13px;color:var(--gris)}
+.etapes span.on{background:var(--prune);color:#fff;border-color:var(--prune)}.etapes span.fait{background:var(--clair);color:var(--fonce)}
+.grille{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:16px;align-items:start}
+@media(max-width:860px){.grille{grid-template-columns:1fr}}
+.panneau{background:#fff;border:1px solid var(--trame);border-radius:8px;padding:12px}
+.panneau h3{margin:0 0 10px;font-size:16px;color:var(--fonce)}
+.tache{border:1px solid var(--trame);border-radius:8px;padding:10px;margin-bottom:8px;background:#fff}
+.tache.placee{border-color:var(--prune);background:var(--clair)}.tache.fixe{background:#f3f0f2}
+.tache .nom{font-weight:700;color:var(--fonce)}.tache .nom input{width:100%;padding:6px;border:1px solid var(--trame);border-radius:4px;font:inherit}
+.ligne{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:8px;font-size:14px}
+select,button,input[type=text]{font:inherit}select{padding:5px;border:1px solid #cdbfc8;border-radius:4px;background:#fff}
+button{cursor:pointer;border:0;border-radius:6px;padding:7px 13px;background:var(--prune);color:#fff}
+button.sec{background:#fff;color:var(--prune);border:1px solid var(--prune)}button:disabled,select:disabled,input:disabled{opacity:.55;cursor:not-allowed}
+.badge{font-size:12px;padding:2px 8px;border-radius:10px;background:var(--trame);color:var(--fonce)}
+.prio{font-size:13px;color:var(--fonce)}
+.jour{position:relative;margin-left:52px;border-left:2px solid var(--trame)}
+.h{position:absolute;left:-52px;width:calc(100% + 52px);border-top:1px solid var(--trame);font-size:12px;color:var(--gris)}
+.h span{position:relative;top:-8px;background:#fff;padding-right:4px}
+.ev{position:absolute;left:6px;right:6px;border-radius:6px;padding:3px 8px;font-size:12.5px;color:#fff;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.15)}
+.ev b{display:block;font-size:13px}.ev.c-tache{background:var(--prune)}.ev.c-casting{background:var(--bleu)}.ev.c-autre{background:var(--vert)}.ev.c-pause{background:#9a8c95}.ev.c-imprevu{background:var(--orange)}.ev.c-fixe{background:#7a6a74}
+.ev.chev{outline:3px solid var(--ko)}.ev .cloche{float:right}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0}
+.verif{background:#fff;border:1px solid var(--trame);border-radius:8px;padding:12px 16px}
+.verif li{margin:5px 0;list-style:none;padding-left:4px}.verif ul{padding-left:0;margin:6px 0}
+.ok{color:var(--ok)}.ko{color:var(--ko)}
+.bilan{background:var(--clair);border:2px solid var(--prune);border-radius:8px;padding:12px 16px;margin-top:12px}
+.reporte{font-size:13px;color:var(--gris);margin-top:6px}
+footer{text-align:center;font-size:12px;color:var(--gris);padding:16px}
+
+.col{background:#f3eef1;border-radius:8px;padding:10px;min-height:220px}.col h4{margin:0 0 8px;color:var(--fonce)}.kb{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media(max-width:760px){.kb{grid-template-columns:1fr}}
+.carte{background:#fff;border-radius:6px;padding:8px 10px;margin-bottom:8px;box-shadow:0 1px 3px rgba(0,0,0,.12);font-size:14px}.carte .bt{display:flex;gap:4px;margin-top:6px;flex-wrap:wrap}.carte .bt button{padding:3px 8px;font-size:12px}
+.etq{display:inline-block;background:var(--ko);color:#fff;font-size:11px;border-radius:8px;padding:1px 7px;margin-bottom:4px}.ech{font-size:12px;color:var(--fonce)}
+.champ{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}.champ input[type=text]{flex:1;min-width:220px;padding:7px;border:1px solid #cdbfc8;border-radius:4px}
+.todo li{list-style:none;margin:6px 0}.todo{padding-left:0}.fait{text-decoration:line-through;color:var(--gris)}.note{background:#FFF8E1;border-left:4px solid #E0B000;padding:6px 10px;margin:6px 0;font-size:14px}
+.atelier{background:#fff;border:1px solid var(--trame);border-radius:8px;padding:14px 16px;margin-bottom:16px}.atelier h2{margin:0 0 6px;font-size:18px;color:var(--fonce)}
+.donnees{background:var(--clair);border-left:4px solid var(--prune);padding:10px 14px;margin:8px 0 12px;font-size:14.5px}
+.q{border-top:1px solid var(--trame);padding:12px 0}.q .en{font-weight:700;color:var(--texte)}.q label.op{display:block;margin:5px 0;padding:6px 10px;border:1px solid var(--trame);border-radius:6px;cursor:pointer;background:#fff}
+.q label.op.bon{border-color:var(--ok);background:#EAF5EE}.q label.op.faux{border-color:var(--ko);background:#FBEDEC}.q input[inputmode=decimal]{padding:6px;width:140px;border:1px solid #cdbfc8;border-radius:4px;font:inherit}
+.expl{margin-top:6px;font-size:14px;padding:8px 10px;border-radius:6px;background:var(--fond)}.expl.ok{border-left:4px solid var(--ok)}.expl.ko{border-left:4px solid var(--ko)}
+.score{font-weight:700;color:var(--fonce);margin-top:8px}.theme{margin:6px 0}.nonselect{user-select:none;-webkit-user-select:none}</style><script src="jspdf.umd.min.js"></script><style>.bilan.pdf{background:#F4E6EE;border-left:5px solid #8C1E70;margin:12px 0}</style></head><body>
+<header><div class="k">Gestion du temps et des priorités · Module 9</div><h1>Entraînement · Le bon outil</h1></header><main><div class="bilan pdf">À la fin de l'exercice, vous téléchargerez un <b>justificatif PDF</b> à déposer dans 360Learning : il atteste que vous avez réalisé l'activité.</div><div id="ex"></div><div class="actions"><button class="sec" id="btnReset">Recommencer l'exercice</button></div><div id="retour"></div></main><footer>TMK Performances - N° Siret : 49841924100027 - Code NAF : 8559A</footer><script>const D={"mode": "exercice", "ateliers": [{"titre": "Quel outil pour quel besoin ?", "consigne": "Pour chaque besoin, choisissez l'outil le plus adapté.", "theme": "Outils numériques", "q": [{"type": "unique", "en": "Ne pas oublier l'entretien annuel de jeudi à 14 h.", "props": ["L'agenda", "Le tableau Kanban", "La liste de tâches", "Les notes rapides"], "rep": 0, "ex": "Un rendez-vous daté : l'agenda, avec un rappel.", "opt": {"fixe": true}}, {"type": "unique", "en": "Suivre avec trois collègues l'avancement de l'organisation d'un salon.", "props": ["L'agenda", "Le tableau Kanban", "La liste de tâches", "Les notes rapides"], "rep": 1, "ex": "Un projet à plusieurs : le Kanban montre qui en est où.", "opt": {"fixe": true}}, {"type": "unique", "en": "Garder l'idée qu'un client vous donne au téléphone.", "props": ["L'agenda", "Le tableau Kanban", "La liste de tâches", "Les notes rapides"], "rep": 3, "ex": "Une idée au vol : les notes rapides.", "opt": {"fixe": true}}, {"type": "unique", "en": "Protéger deux heures pour un dossier stratégique.", "props": ["L'agenda", "Le tableau Kanban", "La liste de tâches", "Les notes rapides"], "rep": 0, "ex": "Un créneau réservé : l'agenda, en time blocking.", "opt": {"fixe": true}}, {"type": "unique", "en": "Ne rien oublier des huit petites tâches de la journée.", "props": ["L'agenda", "Le tableau Kanban", "La liste de tâches", "Les notes rapides"], "rep": 2, "ex": "Des actions à cocher : la liste de tâches.", "opt": {"fixe": true}}]}, {"titre": "Bien utiliser ses outils", "consigne": "Quelques questions sur l'usage des outils.", "theme": "Outils numériques", "q": [{"type": "unique", "en": "Dans un Kanban, vous avez commencé « Relancer le graphiste » sans l'avoir terminée. Où se trouve la carte ?", "props": ["À faire", "Terminé", "Elle est retirée du tableau", "En cours"], "rep": 3, "ex": "Commencée mais pas finie : colonne « En cours ».", "opt": {}}, {"type": "unique", "en": "Combien de listes de tâches tenir en même temps ?", "props": ["Une seule", "Une par outil utilisé", "Une par jour, sur papier", "Autant que de projets"], "rep": 0, "ex": "Plusieurs listes dispersées font perdre du temps : une seule liste.", "opt": {}}, {"type": "unique", "en": "À quoi servent les codes couleur dans un agenda ?", "props": ["À rendre l'agenda plus joli", "À distinguer les types d'activité d'un coup d'œil", "À indiquer les tâches terminées", "À remplacer les rappels"], "rep": 1, "ex": "Les couleurs rendent la journée lisible immédiatement.", "opt": {}}]}]};const $=s=>document.querySelector(s);let etat;
+const nb=v=>parseFloat(String(v).replace(',','.').replace(/\s/g,''));
+let t0;
+function init(){t0=new Date();etat=D.ateliers.map(a=>({rep:a.q.map(()=>null),valide:a.q.map(()=>false),fini:false}));rendre();$('#retour').innerHTML='';}
+function juste(q,r){if(r===null||r===undefined||r==='')return false;if(q.type==='unique')return r===q.rep;if(q.type==='multiple')return JSON.stringify([...r].sort())===JSON.stringify([...q.rep].sort());if(q.type==='numerique')return Math.abs(nb(r)-q.rep)<=(q.opt.tol||0);}
+function rendre(){$('#ex').innerHTML=D.ateliers.map((a,ai)=>{const E=etat[ai];return `<div class="atelier"><h2>Atelier ${ai+1} · ${a.titre}</h2><div class="donnees">${a.consigne}</div>${a.q.map((q,qi)=>{const v=E.valide[qi],r=E.rep[qi];let h=`<div class="q"><div class="en">${qi+1}. ${q.en}${q.type==='multiple'?' <i>(plusieurs réponses)</i>':''}</div>`;
+ if(q.type==='numerique')h+=`<div class="ligne"><input type="text" inputmode="decimal" data-a="${ai}" data-q="${qi}" value="${r??''}" ${v?'disabled':''}> ${q.opt.unite||''}</div>`;
+ else h+=q.props.map((p,pi)=>{const coche=q.type==='multiple'?(r||[]).includes(pi):r===pi;const bon=q.type==='multiple'?q.rep.includes(pi):q.rep===pi;
+  return `<label class="op ${v&&bon?'bon':''} ${v&&coche&&!bon?'faux':''}"><input type="${q.type==='multiple'?'checkbox':'radio'}" name="a${ai}q${qi}" data-a="${ai}" data-q="${qi}" value="${pi}" ${coche?'checked':''} ${v?'disabled':''}> ${p}</label>`}).join('');
+ if(v){const j=juste(q,r);h+=`<div class="expl ${j?'ok':'ko'}"><b>${j?'Bonne réponse.':'Réponse attendue : '+(q.type==='numerique'?String(q.rep).replace('.',',')+' '+(q.opt.unite||''):q.type==='multiple'?q.rep.map(i=>q.props[i]).join(' ; '):q.props[q.rep])+'.'}</b> ${q.ex}</div>`;}
+ if(D.mode==='quiz'&&!v)h+=`<div class="ligne"><button data-vq="${ai}-${qi}">Valider ma réponse</button></div>`;
+ return h+'</div>';}).join('')}${D.mode==='quiz'?'':`<div class="actions"><button data-va="${ai}" ${E.fini?'disabled':''}>${E.fini?'Atelier validé':'Valider l\'atelier'}</button></div>`}${E.fini?`<div class="score">${a.q.filter((q,qi)=>juste(q,E.rep[qi])).length} bonne(s) réponse(s) sur ${a.q.length}.</div>`:''}</div>`;}).join('');
+ document.querySelectorAll('#ex input').forEach(i=>i.onchange=i.oninput=()=>{const ai=+i.dataset.a,qi=+i.dataset.q,q=D.ateliers[ai].q[qi],E=etat[ai];
+  if(q.type==='numerique')E.rep[qi]=i.value;else if(q.type==='multiple'){const s=new Set(E.rep[qi]||[]);i.checked?s.add(+i.value):s.delete(+i.value);E.rep[qi]=[...s];}else E.rep[qi]=+i.value;});
+ document.querySelectorAll('[data-va]').forEach(b=>b.onclick=()=>{const ai=+b.dataset.va,E=etat[ai];const vide=E.rep.findIndex(r=>r===null||r===''||(Array.isArray(r)&&!r.length));if(vide>=0){alert('Répondez à toutes les questions de l\'atelier (question '+(vide+1)+').');return;}E.valide=E.valide.map(()=>true);E.fini=true;rendre();fin();});
+ document.querySelectorAll('[data-vq]').forEach(b=>b.onclick=()=>{const [ai,qi]=b.dataset.vq.split('-').map(Number),E=etat[ai];const r=E.rep[qi];if(r===null||r===''){alert('Choisissez une réponse.');return;}E.valide[qi]=true;if(E.valide.every(x=>x))E.fini=true;rendre();fin();});}
+function fin(){if(etat.every(e=>e.fini)){let t=0,n=0;D.ateliers.forEach((a,ai)=>a.q.forEach((q,qi)=>{n++;if(juste(q,etat[ai].rep[qi]))t++;}));$('#retour').innerHTML=`<div class="bilan"><b>Entraînement terminé : ${t} bonne(s) réponse(s) sur ${n}.</b> Rien n'est noté : relisez les explications des réponses à revoir. Vous pouvez recommencer l'exercice depuis le début.</div><div class="bilan pdf"><b>Dernière étape : téléchargez votre justificatif et déposez-le dans 360Learning.</b> Sans ce dépôt, l'activité n'est pas considérée comme réalisée.<div class="actions"><button id="btnPdf">Télécharger mon justificatif (PDF)</button></div></div>`;$('#btnPdf').onclick=()=>justificatif(t,n);}}
+const sansHtml=s=>String(s??'').replace(/<br\s*\/?>/gi,' ').replace(/<[^>]+>/g,'').replace(/&nbsp;/g,' ').replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>');
+const net=s=>sansHtml(s).replace(/[\u202f\u00a0]/g,' ').replace(/[\u2018\u2019]/g,"'").replace(/[\u201c\u201d]/g,'"').replace(/\u2192/g,'->').replace(/[\u2264]/g,'<=').replace(/[\u2265]/g,'>=').replace(/[^\x20-\xff\u0152\u0153\u20ac\u2013\u2014\u2026]/g,'');
+function txtRep(q,r){if(r===null||r===undefined||r==='')return '(sans réponse)';if(q.type==='numerique')return String(r)+' '+(q.opt.unite||'');if(q.type==='multiple')return r.map(i=>q.props[i]).join(' ; ');return q.props[r];}
+function txtAtt(q){return q.type==='numerique'?String(q.rep).replace('.',',')+' '+(q.opt.unite||''):q.type==='multiple'?q.rep.map(i=>q.props[i]).join(' ; '):q.props[q.rep];}
+function justificatif(t,n){if(!window.jspdf){alert('Le PDF ne peut pas être créé sur ce poste. Imprimez la page à la place (Ctrl + P) en choisissant « Enregistrer au format PDF ».');return;}
+ const d=new window.jspdf.jsPDF({unit:'mm',format:'a4'});const W=210,H=297,M=16,L=W-2*M;let y;const fin=new Date();
+ const PR=[140,30,112],FO=[94,19,73],CL=[244,230,238],TX=[60,60,60],GR=[138,122,133],VE=[46,125,79],RO=[176,48,48];
+ const hm=x=>x.toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'});const dur=Math.max(1,Math.round((fin-t0)/60000));
+ const pied=()=>{d.setFont('helvetica','normal');d.setFontSize(8);d.setTextColor(...GR);d.text('TMK Performances - N° Siret : 49841924100027 - Code NAF : 8559A',W/2,H-9,{align:'center'});};
+ const saut=h=>{if(y+h>H-18){pied();d.addPage();y=18;}};
+ d.setFillColor(...FO);d.rect(0,0,W,30,'F');d.setTextColor(234,211,227);d.setFont('helvetica','bold');d.setFontSize(9);d.text(net(document.querySelector('header .k').textContent).toUpperCase(),M,11);
+ d.setTextColor(255,255,255);d.setFontSize(16);d.text(d.splitTextToSize(net(document.querySelector('header h1').textContent),L)[0],M,21);
+ d.setFontSize(9);d.setFont('helvetica','normal');d.text("Justificatif d'entraînement à déposer dans 360Learning",M,27);
+ y=38;d.setFillColor(...CL);d.rect(M,y,L,16,'F');d.setTextColor(...FO);d.setFont('helvetica','bold');d.setFontSize(10);
+ d.text('Réalisé le '+fin.toLocaleDateString('fr-FR')+', de '+hm(t0)+' à '+hm(fin)+' (environ '+dur+' min)',M+4,y+6.5);
+ d.text('Résultat : '+t+' bonne(s) réponse(s) sur '+n+' - entraînement non noté',M+4,y+12.5);y+=24;
+ D.ateliers.forEach((a,ai)=>{saut(14);d.setFillColor(...PR);d.rect(M,y,L,8,'F');d.setTextColor(255,255,255);d.setFont('helvetica','bold');d.setFontSize(10.5);
+  d.text(d.splitTextToSize((D.ateliers.length>1?'Atelier '+(ai+1)+' - ':'')+net(a.titre),L-6)[0],M+3,y+5.6);y+=13.5;
+  a.q.forEach((q,qi)=>{const r=etat[ai].rep[qi],j=juste(q,r);d.setFontSize(9.5);
+   const le=d.splitTextToSize((qi+1)+'. '+net(q.en),L-4),lr=d.splitTextToSize('Votre réponse : '+net(txtRep(q,r)),L-10),la=j?[]:d.splitTextToSize('Réponse attendue : '+net(txtAtt(q)),L-10);
+   saut((le.length+lr.length+la.length)*4.4+4);
+   d.setFont('helvetica','bold');d.setTextColor(...TX);d.text(le,M+2,y);y+=le.length*4.4;
+   d.setFont('helvetica','normal');d.setTextColor(...(j?VE:RO));d.text((j?'Juste':'À revoir'),M+2,y);d.setTextColor(...TX);d.text(lr,M+20,y);y+=lr.length*4.4;
+   if(la.length){d.setTextColor(...GR);d.text(la,M+20,y);y+=la.length*4.4;}y+=2.5;});y+=3;});
+ pied();d.save(location.pathname.split('/').pop().replace('.html','')+'_justificatif_'+fin.toISOString().slice(0,10)+'.pdf');}
+$('#btnReset').onclick=()=>{if(confirm('Recommencer tout l\'exercice ? Vos réponses seront effacées.'))init();};init();</script></body></html>
